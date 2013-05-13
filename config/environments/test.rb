@@ -34,4 +34,18 @@ ShinyPortal::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+    :provider => 'facebook',
+    :uid => '123545',
+    :info => {
+      :name => 'John Test',
+      :email => 'john.test@example.com'
+    },
+    :credentials => {
+      :token => 'ABCDEF123456',
+      :expires_at => (Time.now + 1.days).to_i,
+      :expires => true
+    }
+  })
 end

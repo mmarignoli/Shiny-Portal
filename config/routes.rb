@@ -1,10 +1,8 @@
 ShinyPortal::Application.routes.draw do
-  get "sessions/new"
-
-  get "sessions/create"
-
-  get "sessions/destroy"
-
+  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
