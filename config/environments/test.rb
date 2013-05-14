@@ -39,7 +39,8 @@ ShinyPortal::Application.configure do
     :provider => 'facebook',
     :uid => '123545',
     :info => {
-      :name => 'John Test',
+      :first_name => 'Joe',
+      :last_name => 'Test',
       :email => 'john.test@example.com'
     },
     :credentials => {
