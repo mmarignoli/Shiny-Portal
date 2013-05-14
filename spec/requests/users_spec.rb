@@ -4,9 +4,8 @@ describe "Users" do
   describe "login with omniauth" do
     it "should create a user with facebook" do
       get 'auth/facebook/callback', nil, { "omniauth.auth" => OmniAuth.config.mock_auth[:facebook] }
-      puts '------------'
-      puts response.to_yaml
-      response.status.should be(200)
+      user = User.find_by_email(OmniAuth.config.mock_auth[:facebook]['info']['email'])
+      user.should_not be_nil
     end
   end
 end

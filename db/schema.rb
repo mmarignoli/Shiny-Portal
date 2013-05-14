@@ -49,22 +49,14 @@ ActiveRecord::Schema.define(:version => 20130506214020) do
   create_table "authentications", :force => true do |t|
     t.string   "oauth_expires_at"
     t.string   "oauth_token"
-    t.integer  "provider_id"
+    t.string   "provider"
     t.string   "uid"
     t.integer  "user_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
 
-  add_index "authentications", ["uid", "provider_id"], :name => "index_authentications_on_uid_and_provider_id", :unique => true
-
-  create_table "providers", :force => true do |t|
-    t.string   "name"
-    t.string   "secret"
-    t.string   "key"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+  add_index "authentications", ["uid", "provider"], :name => "index_authentications_on_uid_and_provider", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
   validates :nickname, :presence => true
   validates :nickname, :uniqueness => true
 
+  def self.from_omniauth(auth)
+    joins(:authentications).where(:authentications => {:uid => auth['uid'], :provider_id => auth['provider']})
+  end
 end
